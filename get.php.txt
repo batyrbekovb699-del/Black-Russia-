@@ -1,0 +1,23 @@
+<?php
+// Твой токен и chat_id группы
+$token = "8605635560:AAHENbbYFZHRaEr6YlZob767mCb3uz83sk0";
+$chat_id = "3794882456";
+
+// Получаем ник из формы
+$nickname = htmlspecialchars($_POST['nickname']);
+
+// Формируем сообщение
+$message = "🆕 Новая заявка\n🎮 Ник: $nickname";
+
+// Отправляем в Telegram
+$url = "https://api.telegram.org/bot$token/sendMessage";
+$params = [
+    "chat_id" => $chat_id,
+    "text" => $message
+];
+
+file_get_contents($url . "?" . http_build_query($params));
+
+// Редирект на страницу благодарности или сообщение
+echo "Ник успешно отправлен!";
+?>
